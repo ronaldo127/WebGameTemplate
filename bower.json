@@ -1,0 +1,17 @@
+{
+  "name": "ProjectTemplate",
+  "homepage": "https://github.com/ronaldo127/WebGameTemplate",
+  "authors": [
+    "Ronaldo Felipe <ronaldolocalhost@gmail.com>"
+  ],
+  "description": "This is my personal template for web games",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
