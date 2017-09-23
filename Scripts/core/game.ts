@@ -6,6 +6,8 @@
 
   let currentScene:objects.Scene;
 
+  let currentState:number;
+
   let assetManifest = [
     {id: "clickMeButton", src:"../../Assets/images/clickMeButton.png"}
   ];
@@ -24,8 +26,7 @@
     createjs.Ticker.framerate = 60;
     createjs.Ticker.on("tick", Update);
 
-    currentScene = new scenes.Start(assetManager);
-    currentScene.Start();
+    currentState = config.START;
     Main();
   }
 
@@ -36,6 +37,19 @@
 
   function Main() {
     console.log("Game Started...");
+    //
+    switch (currentState){
+      case config.START:
+        currentScene = new scenes.Start(assetManager);
+        break;
+      case config.PLAY:
+        //currentScene = new scenes.Play(assetManager);
+
+      break;
+      case config.END:
+        //currentScene = new scenes.End(assetManager);
+      break;
+    }
     stage.addChild(currentScene);
   }
 
