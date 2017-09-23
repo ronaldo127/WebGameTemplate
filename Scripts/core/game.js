@@ -3,7 +3,6 @@
     var stage;
     var canvas;
     var assetManager;
-    var gameContainer;
     var currentScene;
     var assetManifest = [
         { id: "clickMeButton", src: "../../Assets/images/clickMeButton.png" }
@@ -20,17 +19,17 @@
         stage.enableMouseOver(20);
         createjs.Ticker.framerate = 60;
         createjs.Ticker.on("tick", Update);
-        gameContainer = new scenes.Start(assetManager);
-        gameContainer.Start();
+        currentScene = new scenes.Start(assetManager);
+        currentScene.Start();
         Main();
     }
     function Update() {
+        currentScene.Update();
         stage.update();
-        gameContainer.Update();
     }
     function Main() {
         console.log("Game Started...");
-        stage.addChild(gameContainer);
+        stage.addChild(currentScene);
     }
     window.onload = Init;
 })();

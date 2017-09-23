@@ -2,7 +2,6 @@ module objects{
     export class Scene extends createjs.Container{
         constructor(){
             super();
-            this.Start();
         }
 
         /**

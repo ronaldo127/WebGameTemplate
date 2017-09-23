@@ -6,13 +6,14 @@ module scenes {
 
         constructor(assetManager:createjs.LoadQueue){
             super();
-            this.assetManager=assetManager;
+            this.assetManager = assetManager;
+            this.Start();
         }
         
         public Start():void{
             this.helloLabel = new objects.Label("Hello World!", "40px", "Consolas", "#000000", 320, 240, true);
             this.clickButton = new objects.Button(this.assetManager, "clickMeButton", 320, 340, true);
-
+            this.Main();
         }
         
         public Update():void{
@@ -25,7 +26,7 @@ module scenes {
         
             this.addChild(this.clickButton);
         
-            this.clickButton.on("click", function() {
+            this.clickButton.on("click", () => {
               this.helloLabel.TextString = "GoodBye Cruel World";
             });
         }

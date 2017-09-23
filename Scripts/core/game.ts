@@ -3,7 +3,6 @@
   let stage:createjs.Stage;
   let canvas:any;
   let assetManager:createjs.LoadQueue;
-  let gameContainer:objects.Scene;
 
   let currentScene:objects.Scene;
 
@@ -25,19 +24,19 @@
     createjs.Ticker.framerate = 60;
     createjs.Ticker.on("tick", Update);
 
-    gameContainer = new scenes.Start(assetManager);
-    gameContainer.Start();
+    currentScene = new scenes.Start(assetManager);
+    currentScene.Start();
     Main();
   }
 
   function Update() {
+    currentScene.Update();
     stage.update();
-    gameContainer.Update();
   }
 
   function Main() {
     console.log("Game Started...");
-    stage.addChild(gameContainer);
+    stage.addChild(currentScene);
   }
 
   window.onload = Init;
