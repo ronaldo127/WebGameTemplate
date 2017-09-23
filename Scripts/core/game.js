@@ -1,27 +1,44 @@
+// IIFE - Immediately Invoked Function Expression
 (function () {
     var stage;
     var canvas;
     var helloLabel;
+    var clickButton;
+    var assetManager;
+    var gameContainer;
+    var assetManifest = [
+        { id: "clickMeButton", src: "../../Assets/images/clickMeButton.png" }
+    ];
+    function Init() {
+        assetManager = new createjs.LoadQueue();
+        assetManager.installPlugin(createjs.Sound);
+        assetManager.on("complete", Start);
+        assetManager.loadManifest(assetManifest);
+    }
     function Start() {
         canvas = document.getElementById("canvas");
         stage = new createjs.Stage(canvas);
+        stage.enableMouseOver(20);
         createjs.Ticker.framerate = 60;
         createjs.Ticker.on("tick", Update);
         Main();
     }
     function Update() {
-        helloLabel.rotation += 5;
         stage.update();
+        gameContainer.x++;
     }
     function Main() {
         console.log("Game Started...");
-        helloLabel = new createjs.Text("Hello, World!", "40px Consolas", "#000000");
-        helloLabel.regX = helloLabel.getMeasuredWidth() * 0.5;
-        helloLabel.regY = helloLabel.getMeasuredHeight() * 0.5;
-        helloLabel.x = 320;
-        helloLabel.y = 240;
-        stage.addChild(helloLabel);
+        gameContainer = new objects.Scene();
+        stage.addChild(gameContainer);
+        helloLabel = new objects.Label("Hello World!", "40px", "Consolas", "#000000", 320, 240, true);
+        gameContainer.addChild(helloLabel);
+        clickButton = new objects.Button(assetManager, "clickMeButton", 320, 340, true);
+        gameContainer.addChild(clickButton);
+        clickButton.on("click", function () {
+            helloLabel.TextString = "GoodBye Cruel World";
+        });
     }
-    window.onload = Start;
+    window.onload = Init;
 })();
 //# sourceMappingURL=game.js.map
